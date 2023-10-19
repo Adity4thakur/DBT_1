@@ -1,0 +1,70 @@
+6.SELECT DATEDIFF(CURDATE(), dob)  AgeInYears
+FROM emp WHERE empno; 
+
+7.SELECT DATE_FORMAT(CURDATE(), '%M %e, %Y')  FormattedDate;
+
+8.SELECT DATE_FORMAT(CURDATE(), '%W %M %Y') FormattedDate;
+
+9.SELECT YEAR(CURDATE()) AS CurrentYear;
+10.SELECT first_name, hire_date
+FROM emp
+WHERE hire_date BETWEEN '1987-06-01' AND '1987-07-30';
+11SELECT DATE_FORMAT(NOW(), '%W %D %M %Y %H:%i:%s') AS FormattedDate;
+12.SELECT DATE_FORMAT(NOW(), '%d/%m/%Y') AS FormattedDate;
+
+13.SELECT DATE_FORMAT(NOW(), '%r %b %e, %Y')  FormattedDateTime;
+
+14.SELECT *
+FROM emp
+WHERE hiredate = 07;
+
+15.SELECT YEAR(hiredate)  JoinYear, COUNT(*)  EmpCount
+FROM emp
+GROUP BY JoinYear
+HAVING EmpCount > 10;
+
+16.SELECT ename
+FROM emp
+WHERE YEAR(hiredate) = 1987;
+
+17.SELECT *
+FROM emp
+WHERE DATEDIFF(NOW(), hiredate)>5 * 365; -- Assuming 365 days per year
+
+18.SELECT e.employee_id, e.last_name, s.first_salary_date
+FROM employees e
+INNER JOIN (
+    SELECT employee_id, MIN(salary_date) AS first_salary_date
+    FROM salary_history
+    GROUP BY employee_id
+) s ON e.employee_id = s.employee_id;
+------------(1.1)
+SELECT
+   -- e.deptno,
+   -- e.ename,
+    (SELECT MIN(sal_date)FROM emp WHERE s.emp_id = e.emp_id) sal
+FROM
+    emp ;
+=========================
+SELECT
+     ename,deptno      
+-- e.deptno,
+   -- e.ename,
+    (SELECT MIN(sal_date)FROM emp WHERE s.emp_id = e.emp_id) sal
+FROM
+    emp;
+19.SELECT
+    ename,
+    hiredate,
+    TIMESTAMPDIFF(YEAR, hiredate, NOW()) experience
+FROM
+    emp;
+20.SELECT
+    deptno,
+    hiredate,
+    TIMESTAMPDIFF(YEAR, hiredate, NOW())  experience
+FROM
+    emp;
+
+
+
